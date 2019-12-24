@@ -1,3 +1,11 @@
+'''
+@Author: your name
+@Date: 2019-12-23 20:27:36
+@LastEditTime : 2019-12-23 20:36:41
+@LastEditors  : Please set LastEditors
+@Description: In User Settings Edit
+@FilePath: /dialog_backend/dialog_backend/urls.py
+'''
 """dialog_backend URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,8 +22,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import include
 from django.urls import path
+import api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/',include('api.urls', namespace='api'))
 ]
