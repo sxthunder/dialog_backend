@@ -1,0 +1,34 @@
+ S -> Condition | Condition S
+ Condition -> RelationCondition | PropertyCondition | TimeBlock | RelationPropertyCondition | 'concept'
+ Condition -> RelationCondition Direction Condition
+ Condition -> RelationCondition 'and' Condition | RelationCondition 'or' Condition
+ Condition -> RelationCondition 'concept' 'and' Condition | RelationCondition 'concept' 'or' Condition
+ Condition -> PropertyCondition 'and' Condition | PropertyCondition 'or' Condition
+ Condition -> PropertyCondition 'concept' 'and' Condition | PropertyCondition 'concept' 'or' Condition
+ Condition -> RelationPropertyCondition 'and' Condition | RelationPropertyCondition 'or' Condition
+ Condition -> RelationPropertyCondition 'concept' 'and' Condition | RelationPropertyCondition 'concept' 'or' Condition
+ Condition -> Statistics
+ RelationPropertyCondition -> RelationCondition PropertyCondition | PropertyCondition RelationCondition
+ RelationCondition -> 'relation' Combination | 'not' 'relation' Combination
+ Combination ->  'instance' 'or' Combination | 'concept' 'or' Combination
+ Combination ->  'instance' | 'concept'
+ TimeBlock -> Time | Time Direction | Time 'separator' Time | Time Time
+ Time -> 'leftSquareBracket' 'time' 'rightSquareBracket'
+ Direction -> 'before' | 'after'
+ PropertyCondition -> 'propertyS' StringValue
+ PropertyCondition -> 'propertyN' NumericValue
+ PropertyCondition -> 'propertyN' StatisticsValue
+ PropertyCondition -> 'propertyD' TimeBlock
+ PropertyCondition -> 'propertyD' StatisticsValue
+ PropertyCondition -> StatisticsValue 'propertyN'
+ PropertyCondition -> StatisticsValue 'propertyD'
+ StringValue ->  'valueS'
+ NumericValue -> 'valueN' | 'valueN' 'unit'
+ NumericValue -> 'valueN' 'separator' 'valueN' 'unit'| 'valueN' 'unit' 'separator' 'valueN' 'unit' | 'valueN' 'separator' 'valueN'
+ NumericValue -> 'greater' 'valueN' 'unit'| 'less' 'valueN' 'unit' | 'greater' 'valueN' | 'less' 'valueN'
+ StatisticsValue -> 'max' |  'min'
+ Statistics -> 'concept' 'count' | 'concept' 'list' | 'count' 'concept'
+ Statistics -> 'propertyN' 'list' | 'propertyS' 'list'
+ Statistics -> 'concept' 'distribution' | 'propertyN' 'distribution' | 'propertyS' 'distribution'
+ Statistics -> 'propertyS' 'proportion' |  'concept' 'proportion' | 'propertyN' 'proportion'
+ Statistics -> 'average' 'propertyN' | 'max' 'propertyN' | 'min' 'propertyN' | 'propertyN' 'sum'
